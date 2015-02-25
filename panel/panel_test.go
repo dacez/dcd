@@ -1,6 +1,7 @@
 package panel
 
 import (
+	"dcd/cd"
 	"github.com/nsf/termbox-go"
 	"testing"
 )
@@ -12,26 +13,16 @@ func TestInit(t *testing.T) {
 	}
 	defer termbox.Close()
 
-	var p Panel
-	p.Init(0, 0, 10, 10, termbox.ColorWhite, termbox.ColorBlack, OutputType, 0, 0)
-	p.PushLine([]byte("abcdefghijklmn"))
-	p.PushLine([]byte("1234"))
-	p.PushLine([]byte("1234"))
-	p.PushLine([]byte("1234"))
-	p.PushLine([]byte("1234"))
-	p.PushLine([]byte("1234"))
-	p.PushLine([]byte("1234"))
-	p.PushLine([]byte("1234"))
-	p.PushLine([]byte("5678"))
-	p.PushLine([]byte("10jkkkkkkkk"))
-	p.PushLine([]byte("20j"))
-	p.PushLine([]byte("30jkkkkkkkk"))
-	p.PushLine([]byte("5678"))
-	p.Draw()
-	var p1 Panel
-	p1.Init(10, 0, 10, 10, termbox.ColorWhite, termbox.ColorBlack, InputType, 0, 0)
-	p1.Draw()
+	var outputPanel Panel
+	outputPanel.Init(0, 0, 80, 20, termbox.ColorWhite, termbox.ColorBlack, OutputType, 0, 0)
+	var dirs []string
+	cd.GetAllDir("E:\\GoProject\\src", &dirs)
+	for _, v := range dirs {
+		outputPanel.PushLine([]byte(v))
+	}
 
+	var inputPanel Panel
+	inputPanel.Init(0, 20, 80, 2, termbox.ColorWhite, termbox.ColorBlack, InputType, 0, 0)
 	termbox.Flush()
 
 mainloop:
@@ -42,20 +33,20 @@ mainloop:
 			case termbox.KeyEsc:
 				break mainloop
 			case termbox.KeyArrowDown:
-				p.Down()
+				outputPanel.Down()
 			case termbox.KeyArrowUp:
-				p.Up()
+				outputPanel.Up()
 			case termbox.KeyBackspace:
-				p1.Pop()
+				inputPanel.Pop()
 			default:
 				if ev.Ch != 0 {
-					p1.Push(ev.Ch)
+					inputPanel.Push(ev.Ch)
 				}
 			}
 		}
 		termbox.Clear(termbox.ColorDefault, termbox.ColorDefault)
-		p.Draw()
-		p1.Draw()
+		outputPanel.Draw()
+		inputPanel.Draw()
 		termbox.Flush()
 	}
 }
