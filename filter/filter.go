@@ -17,6 +17,7 @@ const (
 type ResultItem struct {
 	Index int
 	Line  line.Line
+	Pos   int
 }
 
 type Filter struct {
@@ -25,8 +26,9 @@ type Filter struct {
 }
 
 func (p *Filter) Init(ls []line.Line) {
-	for _, v := range ls {
-		p.Results = append(p.Results, ResultItem{Index: 0, Line: v})
+	p.Results = make([]ResultItem, 0)
+	for i, v := range ls {
+		p.Results = append(p.Results, ResultItem{Pos: i, Index: 0, Line: v})
 	}
 	p.Type = NameType
 }
@@ -42,13 +44,16 @@ func (p *Filter) Push(k string) {
 			continue
 		}
 		l := v.Line.GetString()
-		li := strings.LastIndex(l, s)
-		if p.Type == NameType && li != -1 && li < len(l)-1 && v.Index == 0 {
-			v.Index = li + 1
+		if v.Index == 0 {
+			li := strings.LastIndex(l, s)
+			if p.Type == NameType && li != -1 && li < len(l)-1 {
+				v.Index = li + 1
+			}
 		}
+		k = strings.ToLower(k)
 		l = strings.ToLower(l[v.Index:])
 		if strings.Contains(l, k) {
-			v.Index += len(k)
+			v.Index += strings.Index(l, k) + len(k)
 			partResult = append(partResult, v)
 		}
 	}

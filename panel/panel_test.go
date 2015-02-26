@@ -20,6 +20,7 @@ func TestInit(t *testing.T) {
 	for _, v := range dirs {
 		outputPanel.PushLine([]byte(v))
 	}
+	outputPanel.StartFilter()
 
 	var inputPanel Panel
 	inputPanel.Init(0, 20, 80, 2, termbox.ColorWhite, termbox.ColorBlack, InputType, 0, 0)
@@ -41,6 +42,7 @@ mainloop:
 			default:
 				if ev.Ch != 0 {
 					inputPanel.Push(ev.Ch)
+					outputPanel.FilterPush(string(ev.Ch))
 				}
 			}
 		}

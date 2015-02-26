@@ -1,6 +1,7 @@
 package panel
 
 import (
+	"dcd/filter"
 	"dcd/line"
 	"github.com/mattn/go-runewidth"
 	"github.com/nsf/termbox-go"
@@ -25,7 +26,7 @@ type Panel struct {
 	PosX int
 	PosY int
 
-	FilterRegexp string
+	ft filter.Filter
 
 	buffers    []line.Line
 	lines      []line.Line
@@ -50,15 +51,10 @@ func (p *Panel) drawCursor() {
 	}
 }
 
-func (p *Panel) filter() {
-	p.lines = make([]line.Line, 0)
-	if p.FilterRegexp == "" {
-		p.lines = append(p.lines, p.buffers...)
-	}
-}
-
 func (p *Panel) drawLines() {
-	p.filter()
+	if p.Type == InputType {
+		p.lines = p.buffers
+	}
 	if p.selectLine < p.startLine {
 		p.startLine = p.selectLine
 	}
@@ -123,6 +119,23 @@ func (p *Panel) PushLine(b []byte) {
 	l := line.Line{Fg: p.Fg, Bg: p.Bg}
 	l.PushBytes(b)
 	p.buffers = append(p.buffers, l)
+}
+
+func (p *Panel) FilterToLine() {
+	p.lines = make([]line.Line, 0)
+	for _, v := range p.ft.Results {
+		p.lines = append(p.lines, p.buffers[v.Pos])
+	}
+}
+
+func (p *Panel) StartFilter() {
+	p.ft.Init(p.buffers)
+	p.FilterToLine()
+}
+
+func (p *Panel) FilterPush(s string) {
+	p.ft.Push(s)
+	p.FilterToLine()
 }
 
 func (p *Panel) Draw() {

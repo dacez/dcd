@@ -57,3 +57,16 @@ func TestSlice(t *testing.T) {
 	f.Push("o")
 	f.Print()
 }
+
+func TestSlice1(t *testing.T) {
+	ls := make([]line.Line, 1)
+	ls[0].PushBytes([]byte("E:\\GoProject\\src\\github.com\\gopherjs\\gopherjs\\node-syscall"))
+	var f Filter
+	f.Init(ls)
+	f.Type = NameType
+	f.Push("d")
+	f.Push("a")
+	f.Push("c")
+	f.Push("e")
+	f.Print()
+}
