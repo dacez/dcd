@@ -12,6 +12,14 @@ type Line struct {
 	Fg termbox.Attribute
 }
 
+func (p *Line) GetString() string {
+	s := ""
+	for _, v := range p.Cs {
+		s += string(v.Ch)
+	}
+	return s
+}
+
 func (p *Line) PushCell(c termbox.Cell) {
 	p.Cs = append(p.Cs, c)
 }
