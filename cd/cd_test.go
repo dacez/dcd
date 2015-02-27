@@ -6,8 +6,7 @@ import (
 )
 
 func TestGetAllDir(t *testing.T) {
-	var dirs []string
-	GetAllDir("E:\\GoProject\\src", &dirs)
+	dirs := GetDirs()
 	for _, v := range dirs {
 		fmt.Println(v)
 	}

@@ -1,7 +1,10 @@
 package cd
 
 import (
+	"dcd/config"
+	"encoding/json"
 	"io/ioutil"
+	"os"
 	"runtime"
 )
 
@@ -21,4 +24,43 @@ func GetAllDir(root string, dirs *[]string) {
 		*dirs = append(*dirs, root+s+v.Name())
 		GetAllDir(root+s+v.Name(), dirs)
 	}
+}
+
+func GetHis(dirs *[]string) {
+	content, _ := ioutil.ReadFile(config.GetConfig().Home + "/.dacecd/.dacecdhis")
+	json.Unmarshal(content, dirs)
+}
+
+func PushHis(dir string) {
+	var dirs []string
+	content, _ := ioutil.ReadFile(config.GetConfig().Home + "/.dacecd/.dacecdhis")
+	json.Unmarshal(content, &dirs)
+	var tmpDirs []string
+	tmpDirs = append(tmpDirs, dir)
+	for _, v := range dirs {
+		if v != dir {
+			tmpDirs = append(tmpDirs, v)
+		}
+	}
+	if len(tmpDirs) > config.GetConfig().HisCount {
+		tmpDirs = tmpDirs[0:config.GetConfig().HisCount]
+	}
+	w, _ := json.Marshal(tmpDirs)
+	ioutil.WriteFile(config.GetConfig().Home+"/.dacecd/.dacecdhis", w, os.ModePerm)
+}
+
+func GetDirs() []string {
+	var retDirs []string
+	var dirs []string
+	if config.GetConfig().M == config.HisMode {
+		GetHis(&dirs)
+		retDirs = append(retDirs, dirs...)
+	} else if config.GetConfig().M == config.GlobalMode {
+		for _, v := range config.GetConfig().ContainDirs {
+			dirs = make([]string, 0)
+			GetAllDir(v, &dirs)
+			retDirs = append(retDirs, dirs...)
+		}
+	}
+	return retDirs
 }
