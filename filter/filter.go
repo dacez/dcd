@@ -1,6 +1,7 @@
 package filter
 
 import (
+	"dcd/config"
 	"dcd/line"
 	"fmt"
 	"runtime"
@@ -8,11 +9,6 @@ import (
 )
 
 type FilterType int
-
-const (
-	NameType FilterType = iota
-	PathType
-)
 
 type ResultItem struct {
 	Index int
@@ -30,7 +26,6 @@ func (p *Filter) Init(ls []line.Line) {
 	for i, v := range ls {
 		p.Results = append(p.Results, ResultItem{Pos: i, Index: 0, Line: v})
 	}
-	p.Type = NameType
 }
 
 func (p *Filter) Push(k string) {
@@ -44,10 +39,14 @@ func (p *Filter) Push(k string) {
 			continue
 		}
 		l := v.Line.GetString()
-		if v.Index == 0 {
+		if config.GetConfig().FuzzyFindMode == config.NameMode && v.Index == 0 {
 			li := strings.LastIndex(l, s)
-			if p.Type == NameType && li != -1 && li < len(l)-1 {
-				v.Index = li + 1
+			if li != -1 && li <= len(l)-1 {
+				if li == len(l)-1 {
+					v.Index = li
+				} else {
+					v.Index = li + 1
+				}
 			}
 		}
 		k = strings.ToLower(k)

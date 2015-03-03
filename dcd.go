@@ -53,15 +53,25 @@ mainloop:
 				break mainloop
 			case termbox.KeyArrowDown, termbox.KeyCtrlJ, termbox.KeyCtrlN:
 				outputPanel.Down()
-			case termbox.KeyCtrlD:
-				if config.GetConfig().M == config.HisMode {
-					config.GetConfig().M = config.GlobalMode
-				} else {
-					config.GetConfig().M = config.HisMode
+			case termbox.KeyCtrlX:
+				if config.GetConfig().DirectoryMode == config.HisMode {
+					config.GetConfig().DirectoryMode = config.AllMode
+				} else if config.GetConfig().DirectoryMode == config.AllMode {
+					config.GetConfig().DirectoryMode = config.HisMode
 				}
 				dirs = cd.GetDirs()
 				outputPanel.InitBuffers(dirs)
-
+				for _, v := range inputPanel.GetSelectLine().Cs {
+					outputPanel.FilterPush(string(v.Ch))
+				}
+			case termbox.KeyCtrlD:
+				if config.GetConfig().FuzzyFindMode == config.NameMode {
+					config.GetConfig().FuzzyFindMode = config.PathMode
+				} else if config.GetConfig().FuzzyFindMode == config.PathMode {
+					config.GetConfig().FuzzyFindMode = config.NameMode
+				}
+				dirs = cd.GetDirs()
+				outputPanel.InitBuffers(dirs)
 				for _, v := range inputPanel.GetSelectLine().Cs {
 					outputPanel.FilterPush(string(v.Ch))
 				}

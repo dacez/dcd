@@ -7,19 +7,26 @@ import (
 	"runtime"
 )
 
-type Mode int
+type DirMode int
+type FindMode int
 
 const (
-	HisMode    Mode = 0
-	GlobalMode Mode = 1
+	HisMode DirMode = 0
+	AllMode DirMode = 1
+)
+
+const (
+	NameMode FindMode = 0
+	PathMode FindMode = 1
 )
 
 type Config struct {
-	ContainDirs []string
-	IgnoreDirs  string
-	HisCount    int
-	Home        string
-	M           Mode
+	ContainDirs   []string
+	IgnoreDirs    string
+	HisCount      int
+	Home          string
+	DirectoryMode DirMode
+	FuzzyFindMode FindMode
 }
 
 var conf Config
@@ -44,11 +51,20 @@ func GetConfig() *Config {
 }
 
 func GetStateLine() string {
-	retStr := "CurMode["
-	if GetConfig().M == GlobalMode {
+	retStr := "Directory["
+	if GetConfig().DirectoryMode == AllMode {
 		retStr += "  All  "
-	} else if GetConfig().M == HisMode {
+	} else if GetConfig().DirectoryMode == HisMode {
 		retStr += "History"
+	} else {
+		return ""
+	}
+	retStr += "] (Ctrl-X)        FindMode["
+
+	if GetConfig().FuzzyFindMode == NameMode {
+		retStr += "Name"
+	} else if GetConfig().FuzzyFindMode == PathMode {
+		retStr += "Path"
 	} else {
 		return ""
 	}

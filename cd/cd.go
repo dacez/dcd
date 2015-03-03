@@ -62,10 +62,10 @@ func PushHis(dir string) {
 func GetDirs() []string {
 	var retDirs []string
 	var dirs []string
-	if config.GetConfig().M == config.HisMode {
+	if config.GetConfig().DirectoryMode == config.HisMode {
 		GetHis(&dirs)
 		retDirs = append(retDirs, dirs...)
-	} else if config.GetConfig().M == config.GlobalMode {
+	} else if config.GetConfig().DirectoryMode == config.AllMode {
 		for _, v := range config.GetConfig().ContainDirs {
 			dirs = make([]string, 0)
 			GetAllDir(v, &dirs)
