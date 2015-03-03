@@ -48,7 +48,7 @@ func PushHis(dir string) {
 	var tmpDirs []string
 	tmpDirs = append(tmpDirs, dir)
 	for _, v := range dirs {
-		if v != dir {
+		if v != dir && v != "" {
 			tmpDirs = append(tmpDirs, v)
 		}
 	}
