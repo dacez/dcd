@@ -39,6 +39,9 @@ func GetHis(dirs *[]string) {
 }
 
 func PushHis(dir string) {
+	if dir == "" {
+		return
+	}
 	var dirs []string
 	content, _ := ioutil.ReadFile(config.GetConfig().Home + "/.dacecd/.dacecdhis")
 	json.Unmarshal(content, &dirs)
