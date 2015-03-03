@@ -42,3 +42,16 @@ func init() {
 func GetConfig() *Config {
 	return &conf
 }
+
+func GetStateLine() string {
+	retStr := "CurMode["
+	if GetConfig().M == GlobalMode {
+		retStr += "  All  "
+	} else if GetConfig().M == HisMode {
+		retStr += "History"
+	} else {
+		return ""
+	}
+	retStr += "] (Ctrl-D)"
+	return retStr
+}

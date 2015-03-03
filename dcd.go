@@ -24,18 +24,23 @@ func main() {
 
 	os.Mkdir(home+"/.dacecd", os.ModeDir|os.ModePerm)
 
+	w, h := termbox.Size()
+
 	var inputPanel panel.Panel
 	inputPanel.Init(0, 0, w, 2, termbox.ColorWhite, termbox.ColorBlack, panel.InputType, 0, 0)
 
 	var outputPanel panel.Panel
-	w, h := termbox.Size()
-	outputPanel.Init(0, 2, w, h-2, termbox.ColorWhite, termbox.ColorBlack, panel.OutputType, 0, 0)
-
+	outputPanel.Init(0, 2, w, h-4, termbox.ColorWhite, termbox.ColorBlack, panel.OutputType, 0, 0)
 	dirs := cd.GetDirs()
 	outputPanel.InitBuffers(dirs)
 
+	var statePanel panel.Panel
+	statePanel.Init(0, h-2, w, 2, termbox.ColorWhite, termbox.ColorBlack, panel.OutputType, 0, 0)
+	statePanel.InitBuffer(config.GetStateLine())
+
 	inputPanel.Draw()
 	outputPanel.Draw()
+	statePanel.Draw()
 	termbox.Flush()
 
 mainloop:
@@ -82,8 +87,10 @@ mainloop:
 			}
 		}
 		termbox.Clear(termbox.ColorDefault, termbox.ColorDefault)
-		outputPanel.Draw()
 		inputPanel.Draw()
+		outputPanel.Draw()
+		statePanel.InitBuffer(config.GetStateLine())
+		statePanel.Draw()
 		termbox.Flush()
 	}
 }

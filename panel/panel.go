@@ -115,6 +115,12 @@ func (p *Panel) Init(x, y, w, h int, fg, bg termbox.Attribute, t PanelType, px, 
 	p.selectLine = 0
 }
 
+func (p *Panel) InitBuffer(str string) {
+	tmpStrs := make([]string, 0)
+	tmpStrs = append(tmpStrs, str)
+	p.InitBuffers(tmpStrs)
+}
+
 func (p *Panel) InitBuffers(strs []string) {
 	if p.Type == InputType {
 		return
