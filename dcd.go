@@ -24,6 +24,9 @@ func main() {
 
 	os.Mkdir(home+"/.dacecd", os.ModeDir|os.ModePerm)
 
+	var inputPanel panel.Panel
+	inputPanel.Init(0, 0, w, 2, termbox.ColorWhite, termbox.ColorBlack, panel.InputType, 0, 0)
+
 	var outputPanel panel.Panel
 	w, h := termbox.Size()
 	outputPanel.Init(0, 2, w, h-2, termbox.ColorWhite, termbox.ColorBlack, panel.OutputType, 0, 0)
@@ -31,11 +34,8 @@ func main() {
 	dirs := cd.GetDirs()
 	outputPanel.InitBuffers(dirs)
 
-	var inputPanel panel.Panel
-	inputPanel.Init(0, 0, w, 2, termbox.ColorWhite, termbox.ColorBlack, panel.InputType, 0, 0)
-
-	outputPanel.Draw()
 	inputPanel.Draw()
+	outputPanel.Draw()
 	termbox.Flush()
 
 mainloop:

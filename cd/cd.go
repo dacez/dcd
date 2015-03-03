@@ -27,8 +27,15 @@ func GetAllDir(root string, dirs *[]string) {
 }
 
 func GetHis(dirs *[]string) {
+	tmpDirs := make([]string, 0)
 	content, _ := ioutil.ReadFile(config.GetConfig().Home + "/.dacecd/.dacecdhis")
-	json.Unmarshal(content, dirs)
+	json.Unmarshal(content, &tmpDirs)
+	curDir, _ := os.Getwd()
+	for _, v := range tmpDirs {
+		if v != curDir {
+			*dirs = append(*dirs, v)
+		}
+	}
 }
 
 func PushHis(dir string) {
