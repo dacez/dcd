@@ -5,6 +5,7 @@ import (
 	"dcd/line"
 	"fmt"
 	"runtime"
+	"sort"
 	"strings"
 )
 
@@ -16,20 +17,34 @@ type ResultItem struct {
 	Pos   int
 }
 
+type ResultItemSlice []ResultItem
+
+func (p ResultItemSlice) Len() int {
+	return len(p)
+}
+
+func (p ResultItemSlice) Less(i, j int) bool {
+	return len(p[i].Line.Cs)-p[i].Index < len(p[j].Line.Cs)-p[j].Index
+}
+
+func (p ResultItemSlice) Swap(i, j int) {
+	p[i], p[j] = p[j], p[i]
+}
+
 type Filter struct {
-	Results []ResultItem
+	Results ResultItemSlice
 	Type    FilterType
 }
 
 func (p *Filter) Init(ls []line.Line) {
-	p.Results = make([]ResultItem, 0)
+	p.Results = make(ResultItemSlice, 0)
 	for i, v := range ls {
 		p.Results = append(p.Results, ResultItem{Pos: i, Index: 0, Line: v})
 	}
 }
 
 func (p *Filter) Push(k string) {
-	partResult := make([]ResultItem, 0)
+	partResult := make(ResultItemSlice, 0)
 	s := "/"
 	if runtime.GOOS == "windows" {
 		s = "\\"
@@ -56,6 +71,7 @@ func (p *Filter) Push(k string) {
 			partResult = append(partResult, v)
 		}
 	}
+	sort.Sort(partResult)
 	p.Results = partResult
 }
 

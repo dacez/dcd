@@ -37,7 +37,7 @@ func (p *Line) PushBytes(b []byte) {
 	var utf8str []rune
 	for i := 0; i < len(b); {
 		r, l := utf8.DecodeRune(b[i:])
-		if l == 0 {
+		if l == 0 || r == utf8.RuneError {
 			break
 		}
 		i += l
