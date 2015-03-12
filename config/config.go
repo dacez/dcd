@@ -22,7 +22,6 @@ const (
 
 type Config struct {
 	ContainDirs   []string
-	IgnoreDirs    string
 	HisCount      int
 	Home          string
 	DirectoryMode DirMode
