@@ -13,8 +13,8 @@
     Download the execute file dcd (I compile the 64bit for linux only)
     Download the dcd.sh 
     mkdir .dacecd in your homepath then move dcd.sh and dcd in it
-
     vim $Home/.dacecd/.dcd.sh
+    
         #!/bin/bash
         unalias cd
         alias dcd='$Home/.dacecd/dcd'
@@ -28,25 +28,26 @@
         alias cd='source $Home/.dacecd/dcd.sh'
 
     Replace $Home to your real homepath.
-
-
+    
 ## How To Config
+
 ###First:
     vim $Home/.dacecd/.dacecdrc
-
 
         {
           "ContainDirs": [
             "/home/qspace_system/QQMail/micromsg",
             "/home/qspace_system/QQMail/mmcomm"
-        ],
-        "HisCount":100
+            ],
+            "HisCount":100
         }
 
     Modify the ContainDirs that you need to fuzzy. The .dacecdrc must be a json.
 ###Second:
     vim .profile or .bashrc
     Add two lines below:
+    
         alias cd='source YOURHOMEPATH/.dacecd/dcd.sh'
         alias cdl='YOURHOMEPATH/.dacecd/dcd;source YOURHOMEPATH/.dacecd/command.sh'
+        
     Reconnnect your terminal.
