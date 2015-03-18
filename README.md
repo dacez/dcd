@@ -45,13 +45,13 @@
     Modify the ContainDirs that you need to fuzzy. The .dacecdrc must be a json.
 
 
-Third:
-vim .profile or .bashrc
+    Third:
+    vim .profile or .bashrc
 
-Add two lines below:
-alias cd='source YOURHOMEPATH/.dacecd/dcd.sh'
-alias cdl='YOURHOMEPATH/.dacecd/dcd;source YOURHOMEPATH/.dacecd/command.sh'
+    Add two lines below:
+        alias cd='source YOURHOMEPATH/.dacecd/dcd.sh'
+        alias cdl='YOURHOMEPATH/.dacecd/dcd;source YOURHOMEPATH/.dacecd/command.sh'
 
-Reconnnect your terminal.
+    Reconnnect your terminal.
 
 
