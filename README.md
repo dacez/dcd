@@ -5,7 +5,10 @@
     cdl to play
     Ctrl-x to hash all directories
     Ctrl-d to change fuzzy find mode
-
+    
+## Notice
+    Can't use ~ to instead of $Home
+    
 ## How To Install （Linux 64bit Only）
     Download the execute file dcd (I compile the 64bit for linux only)
     Download the dcd.sh 
@@ -29,9 +32,6 @@
 
 ## How To Config
 ###First:
-    Can't use ~ to instead of $Home
-
-###Second:
     vim $Home/.dacecd/.dacecdrc
 
 
@@ -44,7 +44,7 @@
         }
 
     Modify the ContainDirs that you need to fuzzy. The .dacecdrc must be a json.
-###Third:
+###Second:
     vim .profile or .bashrc
     Add two lines below:
         alias cd='source YOURHOMEPATH/.dacecd/dcd.sh'
