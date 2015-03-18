@@ -1,9 +1,9 @@
-### Dacecd
+# Dacecd
 ===
     like cd command
     but it can save the cd history and fuzzy find dirs
 
-### How To Install （Linux 64bit Only）
+## How To Install （Linux 64bit Only）
 ---
     Download the execute file dcd (i compile the 64bit for linux only)
     Download the dcd.sh 
@@ -25,7 +25,7 @@
     Replace YOURHOMEPATH to your real homepath.
 
 
-### How To Config
+## How To Config
 ---
     First:
     Can't use ~ to instead of YOURHOMEPATH
