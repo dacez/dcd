@@ -7,7 +7,7 @@
     Ctrl-d to change fuzzy find mode
     
 ## Notice
-    Can't use ~ to instead of $Home
+    Can't use ~ instead of $Home
     
 ## How To Install （Linux 64bit Only）
     Download the execute file dcd (I compile the 64bit for linux only)
