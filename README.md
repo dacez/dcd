@@ -1,6 +1,6 @@
 # dcd
-like cd command
-but it can save the cd history and fuzzy find dirs
+        like cd command
+        but it can save the cd history and fuzzy find dirs
 
 How To Install
 Linux Only
