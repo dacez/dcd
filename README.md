@@ -47,7 +47,7 @@
     vim .profile or .bashrc
     Add two lines below:
     
-        alias cd='source YOURHOMEPATH/.dacecd/dcd.sh'
-        alias cdl='YOURHOMEPATH/.dacecd/dcd;source YOURHOMEPATH/.dacecd/command.sh'
+        alias cd='source $Home/.dacecd/dcd.sh'
+        alias cdl='$Home/.dacecd/dcd;source $Home/.dacecd/command.sh'
         
-    Reconnnect your terminal.
+    Replace $Home to your real homepath and reconnnect your terminal.
