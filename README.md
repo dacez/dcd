@@ -28,10 +28,10 @@
 
 
 ## How To Config
-    ###First:
+###First:
     Can't use ~ to instead of $Home
 
-    ###Second:
+###Second:
     vim $Home/.dacecd/.dacecdrc
 
 
@@ -44,7 +44,7 @@
         }
 
     Modify the ContainDirs that you need to fuzzy. The .dacecdrc must be a json.
-    ###Third:
+###Third:
     vim .profile or .bashrc
     Add two lines below:
         alias cd='source YOURHOMEPATH/.dacecd/dcd.sh'
