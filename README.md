@@ -51,3 +51,16 @@
         alias cdl='$Home/.dacecd/dcd;source $Home/.dacecd/command.sh'
         
     Replace $Home to your real homepath and reconnnect your terminal.
+
+## How To Use
+    Type cdl to launch
+    Ctrl - x to switch println all files or history files
+    Ctrl - d to switch fuzzy find mode path or name
+    Esc      to exit
+    Enter    to go to the select directory
+    Ctrl - j down the select line
+    Ctrl - n down the select line
+    Down     down the select line
+    Ctrl - k up the select line
+    Ctrl - p up the select line
+    Up       up the select line
