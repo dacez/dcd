@@ -1,48 +1,48 @@
-# dcd
-        like cd command
-        but it can save the cd history and fuzzy find dirs
+### Dacecd
+===
+    like cd command
+    but it can save the cd history and fuzzy find dirs
 
-How To Install
-Linux Only
-Download the execute file dcd (i compile the 64bit for linux only)
-Download the dcd.sh 
-mkdir .dacecd in your homepath then move dcd.sh and dcd in it
+### How To Install （Linux 64bit Only）
+---
+    Download the execute file dcd (i compile the 64bit for linux only)
+    Download the dcd.sh 
+    mkdir .dacecd in your homepath then move dcd.sh and dcd in it
 
-vim YOURHOMEPATH/.dacecd/.dcd.sh
-#!/bin/bash
-unalias cd
-alias dcd='YOURHOMEPATH/.dacecd/dcd'
-if [ $# == 0 ];then
-    cd
-else
-    cd $1
-fi
-dcd `pwd`
-unalias dcd
-alias cd='source YOURHOMEPATH/.dacecd/dcd.sh'
+    vim YOURHOMEPATH/.dacecd/.dcd.sh
+        #!/bin/bash
+        unalias cd
+        alias dcd='YOURHOMEPATH/.dacecd/dcd'
+        if [ $# == 0 ];then
+           cd
+        else
+            cd $1
+        fi
+        dcd `pwd`
+        unalias dcd
+        alias cd='source YOURHOMEPATH/.dacecd/dcd.sh'
 
-Replace YOURHOMEPATH to your real homepath.
-
-
-
-How To Config
-
-First:
-Can't use ~ to instead of YOURHOMEPATH
-
-Second:
-vim YOURHOMEPATH/.dacecd/.dacecdrc
+    Replace YOURHOMEPATH to your real homepath.
 
 
-{
-  "ContainDirs": [
-    "/home/qspace_system/QQMail/micromsg",
-    "/home/qspace_system/QQMail/mmcomm"
-  ],
-  "HisCount":100
-}
+### How To Config
+---
+    First:
+    Can't use ~ to instead of YOURHOMEPATH
 
-Modify the ContainDirs that you need to fuzzy. The .dacecdrc must be a json.
+    Second:
+    vim YOURHOMEPATH/.dacecd/.dacecdrc
+
+
+        {
+          "ContainDirs": [
+            "/home/qspace_system/QQMail/micromsg",
+            "/home/qspace_system/QQMail/mmcomm"
+        ],
+        "HisCount":100
+        }
+
+    Modify the ContainDirs that you need to fuzzy. The .dacecdrc must be a json.
 
 
 Third:
