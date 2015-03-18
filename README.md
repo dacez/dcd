@@ -1,5 +1,4 @@
 # Dacecd
-===
 ## Introduction
     like cd command
     but it can save the cd history and fuzzy find dirs
@@ -8,7 +7,6 @@
     Ctrl-d to change fuzzy find mode
 
 ## How To Install （Linux 64bit Only）
----
     Download the execute file dcd (I compile the 64bit for linux only)
     Download the dcd.sh 
     mkdir .dacecd in your homepath then move dcd.sh and dcd in it
@@ -30,7 +28,6 @@
 
 
 ## How To Config
----
     ###First:
     Can't use ~ to instead of $Home
 
