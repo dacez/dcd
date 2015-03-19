@@ -1,8 +1,8 @@
 package cd
 
 import (
-	"dcd/config"
 	"encoding/json"
+	"github.com/dacez/dcd/config"
 	"io/ioutil"
 	"os"
 	"runtime"

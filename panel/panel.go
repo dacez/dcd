@@ -1,8 +1,8 @@
 package panel
 
 import (
-	"dcd/filter"
-	"dcd/line"
+	"github.com/dacez/dcd/filter"
+	"github.com/dacez/dcd/line"
 	"github.com/mattn/go-runewidth"
 	"github.com/nsf/termbox-go"
 )

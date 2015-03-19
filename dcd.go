@@ -1,9 +1,9 @@
 package main
 
 import (
-	"dcd/cd"
-	"dcd/config"
-	"dcd/panel"
+	"github.com/dacez/dcd/cd"
+	"github.com/dacez/dcd/config"
+	"github.com/dacez/dcd/panel"
 	"github.com/nsf/termbox-go"
 	"io/ioutil"
 	"os"

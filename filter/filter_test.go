@@ -1,8 +1,8 @@
 package filter
 
 import (
-	"dcd/line"
 	"fmt"
+	"github.com/dacez/dcd/line"
 	"testing"
 )
 

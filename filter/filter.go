@@ -1,9 +1,9 @@
 package filter
 
 import (
-	"dcd/config"
-	"dcd/line"
 	"fmt"
+	"github.com/dacez/dcd/config"
+	"github.com/dacez/dcd/line"
 	"runtime"
 	"sort"
 	"strings"
