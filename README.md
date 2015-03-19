@@ -43,6 +43,9 @@
 
     Replace $Home to your real homepath.
     
+## Source Install （32bit or 64bit）
+    go get -u github.com/dacez/dcd
+    
 ## How To Config
 
 ###First:
