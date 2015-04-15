@@ -56,6 +56,10 @@ mainloop:
 				break mainloop
 			case termbox.KeyArrowDown, termbox.KeyCtrlJ, termbox.KeyCtrlN:
 				outputPanel.Down()
+			case termbox.KeyCtrlR:
+				l := outputPanel.GetSelectLine()
+				outputPanel.DelSelectLine()
+				cd.RmHis(l.GetString())
 			case termbox.KeyCtrlX:
 				if config.GetConfig().DirectoryMode == config.HisMode {
 					config.GetConfig().DirectoryMode = config.AllMode

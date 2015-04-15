@@ -38,6 +38,26 @@ func GetHis(dirs *[]string) {
 	}
 }
 
+func RmHis(dir string) {
+	if dir == "" {
+		return
+	}
+	var dirs []string
+	content, _ := ioutil.ReadFile(config.GetConfig().Home + "/.dacecd/.dacecdhis")
+	json.Unmarshal(content, &dirs)
+	var tmpDirs []string
+	for _, v := range dirs {
+		if v != dir && v != "" {
+			tmpDirs = append(tmpDirs, v)
+		}
+	}
+	if len(tmpDirs) > config.GetConfig().HisCount {
+		tmpDirs = tmpDirs[0:config.GetConfig().HisCount]
+	}
+	w, _ := json.Marshal(tmpDirs)
+	ioutil.WriteFile(config.GetConfig().Home+"/.dacecd/.dacecdhis", w, os.ModePerm)
+}
+
 func PushHis(dir string) {
 	if dir == "" {
 		return

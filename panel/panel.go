@@ -207,3 +207,19 @@ func (p *Panel) GetSelectLine() line.Line {
 	}
 	return line.Line{}
 }
+
+func (p *Panel) DelSelectLine() {
+	if p.Type == InputType {
+		return
+	} else if p.Type == OutputType {
+		var ls []line.Line
+		for i, v := range p.lines {
+			if i != p.selectLine {
+				ls = append(ls, v)
+			}
+		}
+		p.lines = ls
+		return
+	}
+	return
+}
