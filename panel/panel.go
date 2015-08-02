@@ -154,6 +154,7 @@ func (p *Panel) InitFilter() {
 func (p *Panel) FilterPush(s string) {
 	p.ft.Push(s)
 	p.filterToLine()
+	p.selectLine = 0
 }
 
 func (p *Panel) Draw() {

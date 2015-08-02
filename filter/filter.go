@@ -71,7 +71,9 @@ func (p *Filter) Push(k string) {
 			partResult = append(partResult, v)
 		}
 	}
-	sort.Sort(partResult)
+	if config.GetConfig().DirectoryMode == config.AllMode {
+		sort.Sort(partResult)
+	}
 	p.Results = partResult
 }
 
