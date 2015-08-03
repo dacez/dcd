@@ -1,4 +1,12 @@
 # Dacecd
+## 中文介绍
+    代替cd的一个工具，平时经常遇到在多个文件夹之前切换的问题，每次cd都要打很长的命令，费时费力。
+    该工具采用fuzzyfind的方法解决该问题，让你闪电般打开想要的文件夹。
+    两种模式：历史模式和搜索模式
+    历史模式记录你打开过的文件夹，然后fuzzyfind。
+    搜索模式打开所有文件夹，然后fuzzyfind，如果文件夹态度，加载速度较慢，fuzzyfind还是很快。
+    默认模式为历史模式。
+    
 ## Introduction
     like cd command
     but it can save the cd history and fuzzy find dirs
