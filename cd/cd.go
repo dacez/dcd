@@ -6,9 +6,13 @@ import (
 	"io/ioutil"
 	"os"
 	"runtime"
+	"strings"
 )
 
 func GetAllDir(root string, dirs *[]string) {
+	if root[0:1] == "~" {
+		root = strings.Replace(root, "~", config.GetConfig().Home, 1)
+	}
 	ds, err := ioutil.ReadDir(root)
 	if err != nil {
 		return
