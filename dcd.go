@@ -7,6 +7,8 @@ import (
 	"github.com/nsf/termbox-go"
 	"io/ioutil"
 	"os"
+	"os/exec"
+	"runtime"
 )
 
 func main() {
@@ -93,7 +95,12 @@ mainloop:
 			case termbox.KeyEnter:
 				sl := outputPanel.GetSelectLine()
 				godir := sl.GetString()
-				ioutil.WriteFile(home+"/.dacecd/command.sh", []byte("cd "+godir), os.ModePerm)
+				if runtime.GOOS == "windows" {
+					cmd := exec.Command("explorer.exe", "/root,"+godir)
+					cmd.Run()
+				} else {
+					ioutil.WriteFile(home+"/.dacecd/command.sh", []byte("cd "+godir), os.ModePerm)
+				}
 				cd.PushHis(godir)
 				break mainloop
 			default:
