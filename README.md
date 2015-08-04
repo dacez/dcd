@@ -3,8 +3,8 @@
     代替cd的一个工具，平时经常遇到在多个文件夹之前切换的问题，每次cd都要打很长的命令，费时费力。
     该工具采用fuzzyfind的方法解决该问题，让你闪电般打开想要的文件夹。
     两种模式：历史模式和搜索模式
-    历史模式记录你打开过的文件夹，然后fuzzyfind。
-    搜索模式打开所有文件夹，然后fuzzyfind，如果文件夹态度，加载速度较慢，fuzzyfind还是很快。
+    历史模式记录你打开过的文件夹，运行cd命令就会被记录，然后fuzzyfind。
+    搜索模式打开所有文件夹，然后fuzzyfind，如果文件夹太多，加载速度较慢，fuzzyfind还是很快。
     默认模式为历史模式。
     
 ## Introduction
@@ -28,8 +28,6 @@
     Up       up the select line
 <img src="./dacecd.gif" width="800">
 
-## Notice
-    Can't use ~ instead of $Home
     
 ## How To Install （Linux 64bit Only）
     Download the execute file dcd (I compile the 64bit for linux only)
@@ -48,8 +46,6 @@
         dcd `pwd`
         unalias dcd
         alias cd='source $Home/.dacecd/dcd.sh'
-
-    Replace $Home to your real homepath.
     
 ## Source Install （32bit or 64bit）
     go get -u github.com/dacez/dcd
@@ -61,8 +57,8 @@
 
         {
           "ContainDirs": [
-            "/home/qspace_system/QQMail/micromsg",
-            "/home/qspace_system/QQMail/mmcomm"
+            "~/QQMail/micromsg",
+            "~/QQMail/mmcomm"
             ],
             "HisCount":100
         }
@@ -74,5 +70,3 @@
     
         alias cd='source $Home/.dacecd/dcd.sh'
         alias cdl='$Home/.dacecd/dcd;source $Home/.dacecd/command.sh'
-        
-    Replace $Home to your real homepath and reconnnect your terminal.
